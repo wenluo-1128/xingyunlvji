@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="user-info">
+    <image class="avatar" src="{{avatarUrl}}"></image>
+    <view class="user-text">
+      <text class="id-text">{{name}}</text>
+      <text class="prompt-text">快来发表你的第一条视频吧</text>
+    </view>
+  </view>
+  <view class="content-empty">
+    <text class="empty-text">暂无内容</text>
+    <text class="empty-subtext">小云期待你的视频哦</text>
+  </view>
+  <view class="button-group">
+    <button id="draft-button" bindtap="saveDraft">存草稿</button>
+    <button id="publish-button" bindtap="publishVideo">
+      <image class="publish-icon" src="/images/icons/fabiaohui.png"></image>发表我的视频
+    </button>
+  </view>
+</view>

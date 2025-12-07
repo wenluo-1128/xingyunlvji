@@ -1,0 +1,76 @@
+<view class="container">
+  <image src="{{beijing}}" class="bg-image" mode="aspectFill" />
+  <view class="content">
+    <!-- 服务选择 -->
+    <view class="section">
+      <text class="section-title">定制所包含的服务：</text>
+      <view class="service-grid">
+        <block wx:for="{{services}}" wx:key="index">
+          <view 
+            class="service-item {{selectedService === index ? 'active' : ''}}"
+            bindtap="selectService"
+            data-index="{{index}}"
+          >
+            {{item}}
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 整合模块 -->
+    <view class="section combined-module">
+      <text class="section-title">需要多少位定制师为您提供方案:</text>
+      
+      <!-- 定制师数量 -->
+      <view class="selector-group">
+        <block wx:for="{{3}}" wx:key="index">
+          <view 
+            class="selector-item {{designerNum === index+1 ? 'active' : ''}}"
+            bindtap="selectDesigner"
+            data-num="{{index+1}}"
+          >
+            {{index+1}} 位
+          </view>
+        </block>
+      </view>
+
+      <text class="section-title">您的联系方式:</text>
+
+      <!-- 联系人信息 -->
+      <view class="input-group">
+        <input class="input-half" placeholder="姓名" value="{{name}}" bindinput="inputName"/>
+        <input class="input-half" placeholder="电话" type="number" value="{{phone}}" bindinput="inputPhone"/>
+      </view>
+
+      <!-- 联系时间 -->
+      <view class="time">
+        <picker mode="date" bindchange="selectTime">
+          <input class="input-full" placeholder="选择联系日期" value="{{contactTime}}" disabled/>
+        </picker>
+        <picker mode="time" bindchange="selectTimes">
+          <input class="input-full" placeholder="选择具体联系时间" value="{{contactTimes}}" disabled/>
+        </picker>
+      </view>
+
+      <!-- 订单金额 -->
+      <view class="input-group">
+        <input 
+          class="input-full1" 
+          placeholder="订单金额（元）" 
+          value="{{ amount }}" 
+          disabled 
+        />
+        
+      </view>
+
+      <!-- 备注 -->
+      <textarea class="textarea" placeholder="备注信息" value="{{remark}}" bindinput="inputRemark"/>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-btn" bindtap="handleSubmit">提交需求</view>
+  </view>
+
+  <!-- 提交提示 -->
+  <view wx:if="{{showToast}}" class="custom-toast">已提交</view>
+</view>

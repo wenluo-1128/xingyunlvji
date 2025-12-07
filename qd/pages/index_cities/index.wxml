@@ -1,0 +1,63 @@
+<view class="page-container">
+  <!-- 背景图片容器 -->
+  <view class="background-image" style="background-image: url({{Content.imageSrc}})"></view>
+
+    <!-- 顶部导航 -->
+    <view class="top-nav">
+      <view 
+        class="nav-item {{currentTab === '地点' ? 'active' : ''}}" 
+        bindtap="switchTab" 
+        data-tab="地点"
+        >地点</view>
+      <view 
+        class="nav-item {{currentTab === '商品' ? 'active' : ''}}" 
+        bindtap="switchTab" 
+        data-tab="商品"
+      >商品</view>
+      <view 
+        class="nav-item {{currentTab === '游记' ? 'active' : ''}}" 
+        bindtap="switchTab" 
+        data-tab="游记"
+      >游记</view>
+    </view>
+    
+  <!-- 内容容器 -->
+<view class="content-container" wx:if="{{currentTab === '地点'}}">
+    <!-- 云南主体内容 -->
+    <view class="yunnan-content">
+      <image src="{{ Content.backgroundImage }}" class="yunnan-img"></image>
+      <view class="yunnan-info">
+        <view class="title">{{ Content.title }}</view>
+        <view class="desc">{{ Content.description }}</view>
+      </view>
+    </view>
+
+    <!-- 功能按钮 -->
+    <view class="function-btns">
+      <view class="custom-btn">攻略</view>
+      <view class="custom-btn">文章</view>
+      <view class="custom-btn">定制</view>
+    </view>
+
+    <!-- 热门景点 -->
+    <view class="scenic-list">
+      <view class="section-title">热门景点</view>
+      <view class="scenic-item" wx:for="{{ scenicList }}" wx:key="id">
+        <image src="{{item.image_url}}" class="scenic-img"></image>
+        <view class="scenic-info">
+          <view class="scenic-name">{{ item.name }}</view>
+          <view class="score-info">
+            <text style="color: #ff4444">{{ item.score }}</text>
+            <view class="level-tag" wx:if="{{ item.level }}">{{ item.level }}</view>
+          </view>
+          <view class="scenic-desc">{{ item.desc }}</view>
+        </view>
+        <image src="/images/收藏logo.png" class="star-icon"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="content-container" wx:elif="{{currentTab !== '地点'}}">
+    <view class="empty-content">暂无内容</view>
+  </view>
+</view>

@@ -1,0 +1,71 @@
+<view class="container">
+  <!-- 标题 -->
+  <view class="customoptions">
+  <view class="title">行云旅途定制旅行</view>
+  <!-- 定制选项区域 -->
+    <!-- 目的地（省份-城市选择） -->
+    <view class="formgroup">
+      <view class="formlabel">目的地</view>
+      <picker mode="multiSelector" range="{{ multiArray }}" value="{{ multiIndex }}" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange">
+        <view class="forminput">
+          <input type="text" placeholder="选择目的地（省份-城市）" value="{{ selectedDestination }}" disabled />
+        </view>
+      </picker>
+    </view>
+    <!-- 出发日期 -->
+    <view class="formgroup">
+      <view class="formlabel">出发日期</view>
+      <picker class="forminput" mode="date" bindchange="selectTime">
+        <view class="forminput">
+          <input type="text" placeholder="日期" value="{{ contactTime }}" disabled />
+        </view>
+      </picker>
+    </view>
+    <!-- 回来时间 -->
+    <view class="formgroup">
+      <view class="formlabel">回来时间</view>
+      <picker class="forminput" mode="date" bindchange="selectTimes">
+        <view class="forminput">
+          <input type="text" placeholder="日期" value="{{ contactTimes }}" disabled />
+        </view>
+      </picker>
+    </view>
+    <!-- 预算 -->
+    <view class="renshu">
+      <view class="forminput1">
+        <text>预算为</text>
+        <input type="number" placeholder="最低预算" data-field="minBudget" bindinput="handleBudgetInput" />
+        <text>至</text>
+      </view>
+      <view class="forminput1">
+        <input type="number" placeholder="最高预算" data-field="maxBudget" bindinput="handleBudgetInput" />
+        <text>元</text>
+      </view>
+    </view>
+    <!-- 人数 -->
+    <view class="formgroup1">
+      <view class="formlabel1">人数：</view>
+      <view class="renshu">
+        <view class="forminput1">
+          <text>成人为</text>
+          <input type="number" placeholder="成人人数" data-field="adults" bindinput="handleNumberInput" />
+          <text>人，</text>
+        </view>
+        <view class="forminput1">
+          <text>儿童为</text>
+          <input type="number" placeholder="儿童人数" data-field="children" bindinput="handleNumberInput" />
+          <text>人</text>
+        </view>
+      </view>
+    </view>
+    <!-- 功能按钮 -->
+    <view class="actionbuttons">
+      <navigator url="../tailor_made_inquire/index" class="actionbutton">
+        <view class="button-content">了解定制服务</view>
+      </navigator>
+      <view class="actionbutton" bindtap="submitRequest">
+        <view class="button-content">获取专属方案</view>
+      </view>
+    </view>
+  </view>
+</view>

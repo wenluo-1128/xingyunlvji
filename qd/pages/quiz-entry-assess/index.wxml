@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="employee-count">共1位员工</view>
+  <view class="tab-bar">
+    <view class="tab-item {{currentTab === 'short' ? 'active' : ''}}" 
+    data-tab="short" 
+    bindtap="switchTab">
+    短期旅程定制师
+    </view>
+    <view class="tab-item {{currentTab === 'long' ? 'active' : ''}}" 
+    data-tab="long" 
+    bindtap="switchTab">
+    长期旅程定制师
+    </view>
+  </view>
+</view>
+<view class="duantu" wx:if="{{currentTab === 'short'}}">
+  <view class="customizer-list">
+    <view class="customizer-card" bindtap="assess">
+      <view class="avatar">
+        <image class="avatar-image" src="/images/renwu.png"></image>
+      </view>
+      <view class="name">小杰</view>
+    </view>
+  </view>
+</view>
+    

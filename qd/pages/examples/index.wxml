@@ -1,0 +1,152 @@
+<view class="container">
+  <!-- 发表与收藏按钮 -->
+  <view class="tab-container">
+    <view 
+      class="tab-item {{ currentTab === 'publish' ? 'active-tab' : '' }}" 
+      data-type="publish" 
+      bindtap="handleTabClick"
+    >
+      <text class="iconfont icon-fabiao"></text>
+      发表
+    </view>
+    <view 
+      class="tab-item {{ currentTab === 'favorite' ? 'active-tab' : '' }}" 
+      data-type="favorite" 
+      bindtap="handleTabClick"
+    >
+      <text class="iconfont icon-shoucang"></text>
+      草稿箱
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-container">
+    <!-- 发表界面 -->
+    <block wx:if="{{ currentTab === 'publish' }}">
+      <!-- 省份选择器 -->
+      <view class="formgroup">
+        <picker 
+          mode="multiSelector" 
+          range="{{ multiArray }}" 
+          value="{{ multiIndex }}"
+          bindchange="bindMultiPickerChange"
+          bindcolumnchange="bindMultiPickerColumnChange"
+        >
+          <view class="forminput">
+            <input 
+              type="text" 
+              placeholder="选择你所要发表的城市" 
+              value="{{ selectedDestination }}" 
+              disabled 
+            />
+          </view>
+        </picker>
+      </view>
+
+      <!-- 标题输入框 -->
+      <view class="input-container">
+        <input 
+          placeholder="填写标题会更容易上热门哦" 
+          value="{{ title }}" 
+          bindinput="onTitleInput"
+        />
+      </view>
+
+      <!-- 正文输入区域 -->
+      <view class="textarea-container">
+        <textarea 
+          placeholder="请输入正文内容..." 
+          auto-height 
+          value="{{ content }}" 
+          bindinput="onContentInput"
+          style="min-height: 150rpx;"
+        ></textarea>
+      </view>
+
+      <!-- 图片上传区域 -->
+      <view class="image-container">
+        <view class="image-list">
+          <view 
+            class="image-wrapper" 
+            wx:for="{{ images }}" 
+            wx:key="index"
+          >
+            <image 
+              src="{{ item }}" 
+              mode="aspectFit" 
+              class="image-item" 
+              bindtap="previewImage" 
+              data-index="{{ index }}"
+            />
+            <view 
+              class="delete-btn" 
+              bindtap="deleteImage" 
+              data-index="{{ index }}"
+            >
+              <text class="delete-icon">×</text>
+            </view>
+          </view>
+          <view class="image-wrapper">
+            <view class="upload-btn" bindtap="uploadImage">
+              <image src="/images/images.png" class="upload-icon"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+
+        <!-- 按钮组 -->
+      <view class="button-container">
+        <button class="custom-button" bindtap="saveDraft">存草稿</button>
+        <button class="custom-button" bindtap="publishPost">发表</button>
+      </view>
+
+    </block>
+
+    <!-- 草稿箱界面 -->
+    <block wx:elif="{{ currentTab === 'favorite' }}">
+      <view class="draft-list">
+        <view 
+          wx:for="{{ drafts }}" 
+          wx:key="draft_id" 
+          class="draft-item"
+          style="margin-bottom: 20px;"
+          bindtap="editDraft" 
+          data-draft="{{ item }}"
+        >
+          <view class="rounded-block">
+            <!-- 删除按钮 -->
+            <view 
+              class="draft-delete-btn" 
+              bindtap="deleteDraft" 
+              data-draftid="{{ item.draft_id }}" 
+              catchtap
+            >
+              <text class="delete-icon">×</text>
+            </view>
+
+            <view class="photo-container">
+              <image 
+                class="photo" 
+                src="{{ item.image_url }}" 
+                mode="aspectFill"
+              />
+              <text class="photo-text">{{ item.city }}</text>
+            </view>
+
+            <view class="divider"></view>
+
+            <view class="content-container">
+              <view class="title-container">
+                <text class="title">{{ item.title }}</text>
+              </view>
+              <view class="content-sub-container">
+                <text class="content">{{ item.content }}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+</view>

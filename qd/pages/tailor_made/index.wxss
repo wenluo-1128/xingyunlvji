@@ -1,0 +1,156 @@
+.container {
+    padding: 20rpx;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .title {
+    font-size: 36rpx;
+    font-weight: bold;
+    margin-top: 20rpx;
+    margin-bottom: 40rpx;
+    margin-left: 30%;
+  }
+  
+  .customoptions {
+    width: calc(100% - 30rpx);
+    background-color: #96DED1;
+    padding: 20rpx;
+    border-radius: 15rpx;
+    margin-bottom: 40rpx;
+    margin-left: 15rpx;
+    margin-right: 15rpx;
+    margin-top: 30rpx;
+  }
+  
+  .optiongroup {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+  }
+  
+  .optionseparator {
+    margin: 0 10rpx;
+  }
+  
+  .optionlabel {
+    color: #999;
+    cursor: pointer;
+  }
+  
+  .selected {
+    color: #000;
+  }
+  
+  .formgroup {
+    display: flex;
+    margin-bottom: 20rpx;
+  }
+  
+  .formgroup1 {
+    display: grid;
+    grid-template-rows: repeat(3, 1px);
+    row-gap: 50px;
+  }
+  
+  .renshu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(5px, 1fr));
+    column-gap: 5px;
+  }
+  
+  .formlabel {
+    width: 130rpx;
+    font-size: 30rpx;
+  }
+  
+  .formlabel1 {
+    font-size: 36rpx;
+    font-weight: bold;
+    width: 130rpx;
+  }
+  
+  .forminput {
+    width: 530rpx;
+  }
+  
+  .forminput1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(5px, 1fr));
+    column-gap: 5px;
+    width: 400rpx;
+  }
+  
+  .forminput1 input {
+    margin-left: -15px;
+    width: 100%;
+    padding: 10rpx;
+    border: 1rpx solid #000;
+    border-radius: 10rpx;
+  }
+  
+  .forminput input {
+    width: 100%;
+    padding: 10rpx;
+    border: 1rpx solid #000;
+    border-radius: 10rpx;
+  }
+  
+  .actionbuttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20rpx;
+  }
+  
+  .actionbutton {
+    border: none;
+    border-radius: 8rpx;
+    overflow: hidden;
+    box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .actionbutton:active {
+    transform: translateY(2rpx);
+    box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+  }
+  
+  .button-content {
+    padding: 12rpx 24rpx;
+    font-size: 28rpx;
+    color: black;
+    background-color: #96DED1;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  .functionbuttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .functionbutton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .functionicon {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    margin-bottom: 10rpx;
+  }
+  
+  .circle-color {
+    background-color: #96DED1;
+  }
+  
+  .functiontext {
+    font-size: 24rpx;
+  }

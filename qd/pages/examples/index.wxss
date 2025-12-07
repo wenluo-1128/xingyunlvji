@@ -1,0 +1,275 @@
+/* 容器样式 */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* 设置相对定位，方便子元素绝对定位 */
+    padding-bottom: 80rpx; /* 为按钮组预留空间 */
+    background-color: #F6F6F6;
+  }
+  
+  /* 发表与收藏按钮样式 */
+  .tab-container {
+    display: flex;
+    justify-content: center; /* 居中排列 */
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .tab-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: none; /* 移除边框 */
+    background-color: transparent; /* 移除背景色 */
+    margin-right: 10rpx; /* 设置右侧间距 */
+  }
+  
+  .tab-item:last-child {
+    margin-right: 0; /* 最后一个元素不设置右侧间距 */
+  }
+  
+  .active-tab {
+    text-decoration: underline;
+    text-decoration-color: #96DED1; /* 下划线颜色 */
+    color: #96DED1; /* 字体颜色 */
+  }
+  
+  .iconfont {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+  
+  .navigator-hover {
+    background-color: transparent; /* 防止点击时出现默认背景色 */
+  }
+  
+  /* 标题输入框样式 */
+  .input-container {
+    width: 90%;
+    margin-top: 20px;
+  }
+  
+  /* 正文输入区域样式 */
+  .textarea-container {
+    width: 90%;
+    margin-top: 20px;
+  }
+  
+  .textarea-container textarea {
+    width: 100%;
+    min-height: 50px; /* 增加高度以支持更长的输入 */
+    padding: 10px;
+    box-sizing: border-box;
+    border: none; /* 移除边框 */
+    background-color: transparent; /* 移除背景色 */
+    font-size: 14px;
+      /* 新增：取消高度限制，允许内容扩展 */
+    min-height: 100rpx;  /* 最小高度（可选，避免初始为空时高度太小） */
+    max-height: 600rpx;  /* 最大高度（可选，超过后显示滚动条） */
+    overflow-y: auto;  /* 内容超过最大高度时显示纵向滚动条 */
+    white-space: normal;  /* 自动换行（默认值，可省略） */ 
+  }
+  
+  /* 图片上传区域样式 */
+  .image-container {
+    width: 90%;
+    margin-top: 20px;
+  }
+  
+  .image-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10rpx;
+  }
+  
+  .image-wrapper {
+    width: 30%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-item {
+    width: 100%;
+    height: 250rpx;
+    border-radius: 8rpx;
+    margin: 5rpx;
+  }
+  
+  .upload-btn {
+    width: 150rpx;
+    height: 150rpx;
+    background-color: #f0f0f0;
+    border-radius: 8rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rpx;
+  }
+  
+  .upload-btn .upload-icon {
+    width: 150rpx;
+    height: 150rpx;
+  }
+  
+  .delete-btn {
+    position: absolute;
+    top: 5rpx;
+    right: 5rpx;
+    width: 30rpx;
+    height: 30rpx;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24rpx;
+    z-index: 10;
+  }
+  
+  .delete-icon {
+    font-size: 24rpx;
+  }
+  
+  /* 按钮组样式 */
+  .button-container {
+    position: fixed; /* 固定在页面右下方 */
+    bottom: 50rpx; /* 距离底部20rpx */
+    right: 20rpx; /* 距离右侧20rpx */
+    display: flex; /* 水平排列 */
+    gap: 10rpx; /* 按钮之间的间距 */
+  }
+  
+  /* 自定义按钮样式 */
+  .custom-button {
+    width: 100rpx; /* 按钮宽度为100rpx */
+    height: 60rpx; /* 按钮高度为60rpx */
+    line-height: 60rpx; /* 文本垂直居中 */
+    font-size: 14px; /* 字体大小 */
+    color: white; /* 文本颜色为白色 */
+    background-color: #96DED1; /* 背景颜色 */
+    border-radius: 5px; /* 圆角 */
+    display: flex; /* 确保内容居中 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    padding: 0; /* 移除默认内边距 */
+    border: none; /* 移除默认边框 */
+  }
+  
+  /* 新增的城市选择界面方法 */
+  .formgroup {
+    display: flex;
+    margin-bottom: 20rpx;
+  }
+  
+  .forminput {
+    width: 670rpx;
+  }
+  
+  /* 草稿箱界面样式 */
+  .rounded-block {
+    position: relative; /* 添加相对定位，用于放置删除按钮 */
+    width: 95%; /* 块元素宽度占满可用空间 */
+    height: 120rpx; /* 固定高度 */
+    background-color: white; /* 内部颜色为白色 */
+    border-radius: 25rpx; /* 圆角大小，可以根据需要调整 */
+    box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.4); /* 添加阴影效果 */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    padding: 2% 2% 2% 2%; /* 上一级父元素的内边距10% */
+  }
+  
+  .photo-container {
+    width: 25%; /* 左边部分占25% */
+    height: 100%; /* 高度占满整个块元素 */
+    overflow: hidden; /* 确保图片不会超出容器 */
+    position: relative; /* 相对定位，用于放置文字 */
+  }
+  
+  .photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 图片适配容器 */
+    border-radius: 10rpx; /* 添加圆角 */
+  }
+  
+  .photo-text {
+    position: absolute;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* 文字颜色 */
+    font-size: 35rpx; /* 文字大小 */
+    z-index: 1; /* 确保文字在图片之上 */
+    white-space: nowrap; /* 防止文本换行 */
+    overflow-x: auto; /* 当文本过长时，显示水平滚动条 */
+  }
+  
+  .divider {
+    width: 1rpx; /* 分界线宽度 */
+    height: 150rpx; /* 分界线高度 */
+    background-color: #ccc; /* 分界线颜色 */
+    margin: 0 10rpx; /* 分界线左右外边距 */
+  }
+  
+  .content-container {
+    width: 90%; /* 右边部分占69% */
+    height: 100%; /* 高度占满整个块元素 */
+    display: flex;
+    flex-direction: column; /* 垂直排列 */
+  }
+  
+  .title-container {
+    width: 100%;
+    height: 30%; /* 上半部分占30% */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: flex-start; /* 水平居左 */
+    padding-left: 10rpx; /* 左侧内边距 */
+  }
+  
+  .title {
+    font-weight: bold; /* 加粗 */
+    font-size: 32rpx; /* 文字大小 */
+  }
+  
+  .content-sub-container {
+    width: 100%;
+    height: 70%; /* 下半部分占70% */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: flex-start; /* 水平居左 */
+    padding-left: 10rpx; /* 左侧内边距 */
+  }
+  
+  .content {
+    font-size: 28rpx; /* 文字大小 */
+  }
+  
+  /* 新增：草稿项删除按钮样式 */
+  .draft-delete-btn {
+    position: absolute;
+    top: 10rpx;
+    right: 10rpx;
+    width: 40rpx;
+    height: 40rpx;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  .draft-delete-btn .delete-icon {
+    color: black;
+    font-size: 28rpx;
+  }
+
+  /* .draft-item{
+    margin-bottom: 20px;
+  } */

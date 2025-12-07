@@ -1,0 +1,22 @@
+<view class="container">
+  <view class="title">{{article.title}}</view>
+  
+  <view class="meta-container">
+    <text class="author">{{name.name}}</text>
+    <text class="divider">·</text>
+    <text class="date">{{article.formattedTime}}</text>
+    <text class="divider">·</text>
+    <text class="location">{{article.location}}</text>
+  </view>
+
+  <view class="content">
+    <text>{{article.content}}</text>
+  </view>
+
+  <view class="image-gallery">
+    <image wx:for="{{article.images}}" 
+           wx:key="index"
+           src="{{item}}"
+           mode="aspectFill"></image>
+  </view>
+</view>

@@ -1,0 +1,119 @@
+<view class="container">
+  <!-- 顶部导航 -->
+  <view class="header">
+  <text 
+    class="title {{currentTab === 'follow' ? 'active' : ''}}" 
+    bindtap="switchTab" 
+    data-tab="follow"
+  >关注</text>
+  <text 
+    class="title {{currentTab === 'home' ? 'active' : ''}}" 
+    bindtap="switchTab" 
+    data-tab="home"
+  >首页</text>
+  </view>
+  <view wx:if="{{currentTab === 'home'}}">
+    <!-- 搜索栏 -->
+    <view class="search-container">
+    <input
+      class="search-input"
+      placeholder="输入目的地关键词"
+      value="{{ searchKeyword }}"
+      bindinput="bindSearchInput"
+    />
+    <button
+      class="search-btn"
+      bindtap="handleSearch"
+    >搜索</button>
+    </view>
+    <!-- 搜索结果 -->
+    <view class="search-result" wx:if="{{ showSearchResult }}">
+    <view class="result-header">
+      <text class="back-btn" bindtap="hideSearchResult">返回</text>
+      <text>搜索 "{{ searchKeyword }}"</text>
+    </view>
+    <view class="city-grid">
+      <block wx:for="{{ searchResult }}" wx:key="index">
+        <view class="city-card"  bindtap="handleCityCardTap" data-city="{{item.city_id}}">
+            <image
+              class="city-image"
+              src="{{item.image_url}}" 
+              mode="aspectFill"
+              binderror="handleImageError"
+              data-city="{{ item.name }}"
+              data-index="{{index}}"
+            />
+          <text class="city-name">{{ item.name }}</text>
+        </view>
+      </block>
+      <view wx:if="{{ searchResult.length === 0 }}" class="empty-tip">
+        未找到相关目的地
+      </view>
+    </view>
+    </view>
+    <!-- 猜你想去 -->
+    <view class="section guess-section">
+    <view class="guess-header">
+      <text class="section-title">猜你想去</text>
+      <scroll-view class="guess-scroll" scroll-x>
+        <view class="guess-list">
+          <block wx:for="{{ guessCities }}" wx:key="index">
+            <text
+              class="guess-item"
+              bindtap="handleGuessTap"
+              data-city="{{ item }}"
+            >{{ item }}</text>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+    </view>
+
+    <!-- ai助手 -->
+    <view class="banner" bindtap="ai" >
+    <text class="banner-text">AI赋能，小云邀你智能对话”</text>
+    <image
+      class="banner-image"
+      src="{{ ai }}"
+      mode=""></image>
+    </view>
+
+    <!-- 热门目的地 -->
+    <view class="section">
+    <text class="section-title">热门目的地</text>
+    <scroll-view class="category-scroll" scroll-x>
+      <view class="category-tabs">
+        <block wx:for="{{ categories }}" wx:key="index">
+          <view
+            class="category-tab {{ activeCategory === index ? ' active ' : ''}}"
+            bindtap="switchCategory"
+            data-index="{{ index }}"
+          >
+            {{ item.name }}
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <view class="city-grid">
+      <block wx:for="{{ currentCities }}" wx:key="index">
+        <view class="city-card" bindtap="handleCityCardTap" data-city="{{item.city_id}}">
+          <image
+            class="city-image"
+            src="{{item.image_url}}"
+            mode="aspectFill"
+            binderror="handleImageError"
+            data-city="{{item.city_id}}"
+            data-index="{{index}}"
+          />
+          <text class="city-name">{{item.name}}</text>
+        </view>
+      </block>
+    </view>
+
+    </view>
+  </view>
+    <!-- 关注内容区域 -->
+    <view wx:elif="{{currentTab === 'follow'}}" class="empty-content">
+      暂无内容
+    </view>
+</view>

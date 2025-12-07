@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="header">
+    <view class="avatar">
+      <image src="/images/renwu.png" mode="aspectFill"></image>
+    </view>
+    <view class="name">小杰</view>
+    <view class="tags">
+      <view class="tag">耐心</view>
+      <view class="tag">服务周到，专业</view>
+    </view>
+  </view>
+</view>
+
+<view class="form-container">
+  <!-- <view class="form-item">
+    <view class="form-label">1.请对我的服务进行评价</view>
+    <view class="option-group">
+      <block wx:for="{{evaluationOptions}}" wx:key="*this">
+        <view class="option {{selectedOptions[0].includes(item)? 'selected' : ''}}" bindtap="selectOption" data-group="0" data-option="{{item}}">{{item}}</view>
+      </block>
+    </view>
+  </view>
+
+  <view class="form-item">
+    <view class="form-label">2.其中您认为最满意的服务是</view>
+    <view class="option-group">
+      <block wx:for="{{satisfactionOptions}}" wx:key="*this">
+        <view class="option {{selectedOptions[1].includes(item)? 'selected' : ''}}" bindtap="selectOption" data-group="1" data-option="{{item}}">{{item}}</view>
+      </block>
+    </view>
+  </view> -->
+
+  <view class="form-item">
+    <view class="form-label">1.请对我的服务进行评分</view>
+    <view class="star-group">
+      <text class="star {{starIndex >= 1? 'active' : ''}}" bindtap="selectStar" data-index="1">☆</text>
+      <text class="star {{starIndex >= 2? 'active' : ''}}" bindtap="selectStar" data-index="2">☆</text>
+      <text class="star {{starIndex >= 3? 'active' : ''}}" bindtap="selectStar" data-index="3">☆</text>
+      <text class="star {{starIndex >= 4? 'active' : ''}}" bindtap="selectStar" data-index="4">☆</text>
+      <text class="star {{starIndex >= 5? 'active' : ''}}" bindtap="selectStar" data-index="5">☆</text>
+    </view>
+  </view>
+
+  <view class="form-item">
+    <view class="form-label">2.对我的服务提出表扬或者建议</view>
+    <textarea placeholder="请输入文字" class="textarea" bindinput="inputComment"></textarea>
+  </view>
+</view>    
+<button class="button" bindtap="publishPost">提交</button>

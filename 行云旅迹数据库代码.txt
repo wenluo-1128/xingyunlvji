@@ -1,0 +1,291 @@
+--创建mydb数据库
+CREATE DATABASE mydb；
+
+-- 创建 categories 表
+CREATE TABLE categories (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 创建 cities 表
+CREATE TABLE cities (
+    city_id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    tags TEXT[] NOT NULL,
+    image_url VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 创建 category_city 表
+CREATE TABLE category_city (
+    category_id INT REFERENCES categories(category_id),
+    city_id INT REFERENCES cities(city_id),
+    PRIMARY KEY (category_id, city_id)
+);
+
+-- 创建 guess_cities 表
+CREATE TABLE guess_cities (
+    guess_id SERIAL PRIMARY KEY,
+    city_name VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 插入分类数据
+INSERT INTO categories (name) VALUES
+('当季'),
+('西南地区'),
+('华东地区'),
+('东北地区');
+
+-- 插入城市数据
+INSERT INTO cities (name, tags, image_url) VALUES
+-- 当季/西南地区/华东地区
+('重庆', '{重庆, 西南地区, 西南}', '/images/重庆.png'),
+('无锡', '{江苏, 华东地区}', '/images/无锡.png'),
+('云南', '{西南地区, 西南}', '/images/云南.png'),
+-- 西南地区
+('成都', '{四川, 西南地区, 西南}', '/images/成都.png'),
+('四川', '{四川, 西南地区, 西南}', '/images/四川.png'),
+-- 华东地区
+('福州', '{福建, 华东地区}', '/images/福州.png'),
+-- 东北地区
+('哈尔滨', '{黑龙江, 东北地区, 东北}', '/images/哈尔滨.png'),
+('长春', '{吉林, 东北地区, 东北}', '/images/长春.png');
+
+-- 插入分类与城市关联数据
+INSERT INTO category_city (category_id, city_id)
+SELECT 
+    (SELECT category_id FROM categories WHERE name='当季') AS category_id,
+    (SELECT city_id FROM cities WHERE name='重庆') AS city_id
+UNION ALL
+SELECT 
+    (SELECT category_id FROM categories WHERE name='当季'), 
+    (SELECT city_id FROM cities WHERE name='无锡')
+UNION ALL
+SELECT 
+    (SELECT category_id FROM categories WHERE name='当季'), 
+    (SELECT city_id FROM cities WHERE name='云南')
+UNION ALL
+SELECT 
+    (SELECT category_id FROM categories WHERE name='西南地区'), 
+    (SELECT city_id FROM cities WHERE name='重庆')
+UNION ALL
+SELECT 
+    (SELECT category_id FROM categories WHERE name='西南地区'), 
+    (SELECT city_id FROM cities WHERE name='成都')
+UNION ALL
+SELECT 
+    (SELECT category_id FROM categories WHERE name='西南地区'), 
+    (SELECT city_id FROM cities WHERE name='四川')
+UNION ALL
+SELECT 
+    (SELECT category_id FROM categories WHERE name='华东地区'), 
+    (SELECT city_id FROM cities WHERE name='无锡')
+UNION ALL
+SELECT 
+    (SELECT category_id FROM categories WHERE name='华东地区'), 
+    (SELECT city_id FROM cities WHERE name='福州')
+UNION ALL
+SELECT 
+    (SELECT category_id FROM categories WHERE name='东北地区'), 
+    (SELECT city_id FROM cities WHERE name='哈尔滨')
+UNION ALL
+SELECT 
+    (SELECT category_id FROM categories WHERE name='东北地区'), 
+    (SELECT city_id FROM cities WHERE name='长春');
+
+-- 插入猜你喜欢城市
+INSERT INTO guess_cities (city_name) VALUES
+('广州'),
+('日本'),
+('成都');
+
+-- 创建 articles 表
+CREATE TABLE articles (
+    article_id SERIAL PRIMARY KEY,
+    image_url VARCHAR(255) NOT NULL,
+    location VARCHAR(50) NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 插入测试数据
+INSERT INTO articles (image_url, location, title, content) VALUES
+('/images/重庆.png', '重庆', '山城夜景攻略', '夜幕下的重庆化身 8D 光影迷宫，洪崖洞 19:30 亮灯，千厮门大桥中段拍全景，22:30 后江边倒影更梦幻；南山一棵树日落前 1 小时抵达，晚霞与灯火同框；长江索道南站→北站傍晚乘，微信购票免排队。鹅岭二厂天台赛博风出片，来福士高空栈道选末段时间人少。南滨路蹲拍来福士倒影，穿防滑鞋逛梯坎小巷，18℃夜温备薄外套，洪崖洞提前预约避高峰，手机调 ISO400 + 快门 1/10s，橙色调调色更出彩。'),
+('/images/成都.png', '成都', '美食地图', '成都的美食地图是一场舌尖上的狂欢，从宽窄巷子的麻辣鲜香到建设巷的网红小吃，每一条街巷都藏着惊喜。锦里的三大炮、糖油果子裹着老成都的烟火气，奎星楼街的五里关火锅、春丽冒烤鸭成为新晋打卡地，建设巷的周签签锅巴土豆、傅记排骨排队不断。必尝钟水饺的甜辣交融、龙抄手的清汤鲜美，搭配一碗冰粉解辣。火锅控别错过小龙坎的毛肚、蜀九香的九香牛肉，夜宵推荐双流老妈兔头配冰啤酒。穿街走巷时，来份蛋烘糕或甜水面，感受这座城市的麻辣与温情。'),
+('/images/云南.png', '云南', '滇池', '滇池，云南高原的璀璨明珠，镶嵌在昆明西南的碧玉圆盘。这片中国第六大淡水湖，历经生态修复，如今水质连续七年保持Ⅳ类，重现“四围香稻，万顷晴沙”的诗意画卷。冬日的海埂大坝，红嘴鸥与游人共舞，构成“人鸥同框”的生态奇观；西山睡美人静卧湖畔，传说中化作山峦的少女长发垂入碧波，为滇池增添神秘色彩。沿湖漫步，捞鱼河湿地的水杉林随季节变换色彩，王官湿地的栈道延伸至湖心，而古滇名城的青铜文化与晋宁石寨山考古遗址，则让滇池成为穿越千年的文明长廊。骑行环湖绿道，感受高原季风拂面，或是泛舟草海，看白鹭掠过芦苇荡，四季如画的滇池，正以“大生态、大湿地、大景区”的姿态，展现人与自然和谐共生的新图景。');
+
+-- 创建 provinces 表
+CREATE TABLE provinces (
+    province_id SERIAL PRIMARY KEY,
+    province_name VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- 创建 province_cities 表
+CREATE TABLE province_cities (
+    city_id SERIAL PRIMARY KEY,
+    city_name VARCHAR(50) NOT NULL, -- 不包含“市”后缀
+    province_id INT REFERENCES provinces(province_id)
+);
+
+-- 插入省份数据
+INSERT INTO provinces (province_name) VALUES
+('广东'),
+('浙江'),
+('四川'),
+('江苏'),
+('湖北'),
+('辽宁'),
+('吉林'),
+('黑龙江');
+
+-- 插入城市数据（示例，不带“市”后缀）
+INSERT INTO province_cities (city_name, province_id) VALUES
+('广州', 1),
+('深圳', 1),
+('珠海', 1),
+('佛山', 1),
+('杭州', 2),
+('宁波', 2),
+('温州', 2),
+('嘉兴', 2),
+('成都', 3),
+('绵阳', 3),
+('南充', 3),
+('乐山', 3),
+('南京', 4),
+('苏州', 4),
+('无锡', 4),
+('徐州', 4),
+('武汉', 5),
+('宜昌', 5),
+('襄阳', 5),
+('荆州', 5),
+('沈阳', 6),
+('大连', 6),
+('鞍山', 6),
+('抚顺', 6),
+('长春', 7),
+('吉林', 7),
+('四平', 7),
+('通化', 7),
+('哈尔滨', 8),
+('齐齐哈尔', 8),
+('牡丹江', 8),
+('大庆', 8);
+
+CREATE TABLE travel_requests (
+    request_id SERIAL PRIMARY KEY,
+    destination VARCHAR(100) NOT NULL,
+    departure_date DATE NOT NULL,
+    return_date DATE NOT NULL,
+    min_budget NUMERIC(10,2),
+    max_budget NUMERIC(10,2),
+    adults INT NOT NULL,
+    children INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE drafts (
+    draft_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL, -- 假设未来会扩展用户系统
+    image_url VARCHAR(255) NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 为 articles 表添加新图片列
+ALTER TABLE articles 
+ADD COLUMN new_image_path VARCHAR(255) 
+CHECK (new_image_path ~ '^/article/[a-zA-Z0-9_-]+\.(jpg|jpeg|png|gif)$');
+
+-- 为 drafts 表添加新图片列
+ALTER TABLE drafts 
+ADD COLUMN new_image_path VARCHAR(255) 
+CHECK (new_image_path ~ '^/drafts/[a-zA-Z0-9_-]+\.(jpg|jpeg|png|gif)$');
+
+-- 修改 articles 表约束
+ALTER TABLE articles 
+DROP CONSTRAINT articles_new_image_path_check,
+ADD CONSTRAINT articles_new_image_path_check 
+CHECK (new_image_path ~ '^(/article/[a-zA-Z0-9_-]+\.(jpg|jpeg|png|gif))(,/article/[a-zA-Z0-9_-]+\.(jpg|jpeg|png|gif))*$');
+
+-- 修改 drafts 表约束
+ALTER TABLE drafts 
+DROP CONSTRAINT drafts_new_image_path_check,
+ADD CONSTRAINT drafts_new_image_path_check 
+CHECK (new_image_path ~ '^(/drafts/[a-zA-Z0-9_-]+\.(jpg|jpeg|png|gif))(,/drafts/[a-zA-Z0-9_-]+\.(jpg|jpeg|png|gif))*$');
+
+CREATE TABLE content (
+    id SERIAL PRIMARY KEY,
+    background_image VARCHAR(255) NOT NULL,
+    image_src VARCHAR(255) NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    description TEXT NOT NULL
+);
+
+INSERT INTO content (background_image, image_src, title, description)
+VALUES 
+('/images/yunnan.png', '/images/云南.png', '云南', '彩云之南，我心的方向');
+
+CREATE TABLE scenic_list (
+    id INTEGER PRIMARY KEY,  -- 使用原数据中的固定ID
+    name VARCHAR(100) NOT NULL,
+    score DECIMAL(3,1) NOT NULL,
+    "desc" TEXT NOT NULL,     -- 避免与 PostgreSQL 关键字冲突，使用双引号包裹
+    level VARCHAR(10),
+    image_url VARCHAR(255) NOT NULL,
+    cities_name VARCHAR(100) 
+);
+
+INSERT INTO scenic_list (id, name, score, "desc", level, image_url)
+VALUES
+(1, '滇池', 4.8, '昆明推荐必打卡点', NULL, '/images/滇池.png'),
+(2, '玉龙雪山', 4.7, '北半球最南的大雪山', '5A', '/images/玉龙雪山.png'),
+(3, '洱海', 4.6, '“风花雪月”四大名景之一', NULL, '/images/洱海.png'),
+(4, '丽江古城', 4.7, '800年的千古情怀', NULL, '/images/丽江古城.png');
+
+UPDATE scenic_list SET cities_name = '云南' WHERE id = 1;
+UPDATE scenic_list SET cities_name = '云南' WHERE id = 2;
+UPDATE scenic_list SET cities_name = '云南' WHERE id = 3;
+UPDATE scenic_list SET cities_name = '云南' WHERE id = 4;
+
+-- 创建用户表
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,          -- 用户ID
+    username VARCHAR(255) UNIQUE NOT NULL, -- 用户账号（唯一）
+    password VARCHAR(255) NOT NULL, -- 密码（建议存储哈希值）
+    name VARCHAR(100) NOT NULL,     -- 真实姓名
+    avatar_url TEXT DEFAULT '/image/110.png', -- 头像路径（默认值）
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 注册时间
+);
+
+-- 创建索引
+CREATE UNIQUE INDEX idx_username ON users (username);
+CREATE INDEX idx_created_at ON users (created_at);
+
+ALTER TABLE travel_requests
+  ADD COLUMN designer_num INT NOT NULL DEFAULT 0,
+  ADD COLUMN contact_name VARCHAR(100) NOT NULL DEFAULT '', 
+  ADD COLUMN contact_phone VARCHAR(20) NOT NULL DEFAULT '',
+  ADD COLUMN contact_date DATE,
+  ADD COLUMN contact_time TIME,
+  ADD COLUMN remark TEXT;
+
+ALTER TABLE articles 
+ADD COLUMN user_id INT;
+
+UPDATE articles 
+SET user_id = 1;
+
+UPDATE drafts 
+SET user_id = 1;
+
+ALTER TABLE articles 
+ALTER COLUMN user_id SET NOT NULL;
+
+ALTER TABLE travel_requests
+ADD COLUMN amount numeric(10, 2);

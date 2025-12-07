@@ -1,0 +1,54 @@
+<view class="container">
+  <!-- 定制师月榜标题 -->
+  <view class="title">定制师月榜</view>
+
+  <!-- 好评榜部分 -->
+  <view class="goodratinglist">
+    <view class="goodratingtitle">好评榜</view>
+    <view class="ratingitems">
+      <view class="ratingitem" wx:for="{{ ratingList }}" wx:key="index">
+        <image class="circle" src="{{item.url}}"></image>
+        <view class="ranknumber">{{ item.rank }}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 评价反馈系统部分 -->
+  <view class="feedbacksystem">
+    <view class="feedbacktitle">评价反馈系统</view>
+    <view class="feedbackcontent">
+        <navigator url="../quiz-entry-assess/index" class='assess'>
+        <view>进入评价系统</view>
+        </navigator>
+    </view>
+  </view>
+
+
+  <!-- 热门文章部分 -->
+  <view class="hotarticles">
+    <view class="hotarticlestitle">热门文章</view>
+      <view class="articleitems">
+        <view class="content-wrapper" 
+        wx:for="{{ articleList }}" 
+        wx:key="index"
+        data-item="{{ item }}"
+        bindtap="navigateToDetail">
+        <view class="rounded-block">
+          <view class="photo-container">
+            <image class="photo" src="{{ item.image }}" mode="aspectFill"></image>
+            <text class="photo-text">{{ item.location }}</text>
+          </view>
+          <view class="divider"></view>
+          <view class="content-container">
+            <view class="title-container">
+              <text class="title1">{{ item.title }}</text>
+            </view>
+            <view class="content-sub-container">
+              <text class="content">{{ item.content10 }}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

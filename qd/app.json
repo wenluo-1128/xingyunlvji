@@ -1,0 +1,83 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/index_cities/index",
+        "pages/examples/index",
+        "pages/tailor_made/index",
+        "pages/tailor_made_inquire/index",
+        "pages/user-center/index",
+        "pages/quiz-entry/index",
+        "pages/article/index",
+        "pages/video/index",
+        "pages/qa/index",
+        "pages/comment_on/index",
+        "pages/tailor_made_customize/index",
+        "pages/ai/index",
+        "pages/quiz-entry-assess/index",
+        "pages/quiz-entry-assess-specific/index",
+        "pages/login/index",
+        "pages/article_detailed/index"
+      ],
+      "window": {
+        "backgroundColor": "#F6F6F6",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#F6F6F6",
+        "navigationBarTitleText": "行云旅迹",
+        "navigationBarTextStyle": "black"
+      },
+      "debug": true,
+      "requiredBackgroundModes": ["location"],
+      "sitemapLocation": "sitemap.json",      
+      "style": "v2",
+      "lazyCodeLoading": "requiredComponents",
+      "tabBar": {
+        "color": "#A2A9B0",
+        "selectedColor": "#96DED1",
+        "backgroundColor": "#F6F6F6",
+        "list": [
+          {
+            "pagePath": "pages/index/index",
+            "text": "发现",
+            "iconPath": "images/icons/faxianhui.png",
+            "selectedIconPath": "images/icons/faxianlan.png"
+          },
+          {
+              "pagePath": "pages/examples/index",
+              "text": "发表",
+              "iconPath": "images/icons/fabiaohui.png",
+              "selectedIconPath": "images/icons/fabiaolan.png"
+            },
+            {
+              "pagePath": "pages/tailor_made/index",
+              "text": "行程定制",
+              "iconPath": "images/icons/dingzhihui.png",
+              "selectedIconPath": "images/icons/dingzhilan.png"
+            },
+          {
+            "pagePath": "pages/quiz-entry/index",
+            "text": "定制师",
+            "iconPath": "images/icons/dingzhishihui.png",
+            "selectedIconPath": "images/icons/dingzhishilan.png"
+          },
+          {
+            "pagePath": "pages/user-center/index",
+            "text": "我的",
+            "iconPath": "images/icons/huiwo.png",
+            "selectedIconPath": "images/icons/lanwo.png"
+          }
+        ]
+      },
+      "permission": {
+        "scope.userLocation": {
+          "desc": "你的位置信息将用于小程序的定位功能"
+        }
+      },
+      "setting": {
+        "urlCheck": false,
+        "es6": true,
+        "postcss": true,
+        "minified": true,
+        "enhance": true
+      },
+      "libVersion": "3.7.1" 
+}

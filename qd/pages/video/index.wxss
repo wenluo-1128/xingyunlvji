@@ -1,0 +1,72 @@
+.container {
+    padding: 20px;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 150px;
+    margin-right: 80px;
+}
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 1px solid #000;
+}
+.user-text {
+    display: flex;
+    flex-direction: column;
+}
+.id-text {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.prompt-text {
+    color: #999;
+    font-size: 14px;
+}
+.content-empty {
+    text-align: center; 
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 350px;
+}
+.empty-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 5px;
+}
+.empty-subtext {
+    color: #999;
+    font-size: 14px;
+}
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px; /* 设置按钮之间的间隔为 15rpx */
+}
+#draft-button {
+    background-color: #ccc;
+    color: black;
+    border-radius: 25px;
+    padding: 10px 15px;
+    width: 100px;
+}
+#publish-button {
+    background-color: #96DED1;
+    color: black;
+    border-radius: 25px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    width: 200px;
+}
+.publish-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    vertical-align: middle;
+}

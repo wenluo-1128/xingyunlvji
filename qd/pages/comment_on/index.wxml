@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="tabs">
+    <button class="{{selectedTab === 'reviewed' ? 'active-tab' : ''}}" bindtap="switchTab" data-tab="reviewed" >已点评</button>
+    <button class="{{selectedTab === 'unreviewed' ? 'active-tab' : ''}}" bindtap="switchTab" data-tab="unreviewed">未点评</button>
+  </view>
+  <view class="content">
+    <block wx:if="{{selectedTab === 'reviewed'}}">
+      <view wx:if="{{reviewed.length === 0}}">
+        <text class="no-content">暂无内容</text>
+        <text class="prompt">小云期待你的点评</text>
+      </view>
+      <view wx:else>
+        <!-- 这里可以添加已点评的内容 -->
+        <view wx:for="{{reviewed}}" wx:key="index">
+          <text>{{item.content}}</text>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{selectedTab === 'unreviewed'}}">
+      <view wx:if="{{unreviewed.length === 0}}">
+        <text class="no-content">暂无内容</text>
+        <text class="prompt">你还没有任何未点评的项目</text>
+      </view>
+      <view wx:else>
+        <!-- 这里可以添加未点评的内容 -->
+        <view wx:for="{{unreviewed}}" wx:key="index">
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

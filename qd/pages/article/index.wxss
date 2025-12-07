@@ -1,0 +1,6 @@
+.empty-content {
+    font-size: 50rpx;
+    text-align: center;
+    color: #999;
+    margin-top: 300rpx;
+  }

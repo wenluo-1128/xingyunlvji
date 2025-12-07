@@ -1,0 +1,27 @@
+<!-- 整体容器模块 -->
+<view class="container">
+  <!-- 添加背景图片 -->
+  <image class="background-image" src="{{beijing}}"></image>
+  <!-- 头部区域模块 -->
+  <view class="header">
+    <text class="title">行云旅迹</text>
+    <text class="subtitle">定 制 旅 行</text>
+    <view class="subsubtitle">您的智能行程定制管家！</view>
+  </view>
+  <!-- 定制流程区域模块 -->
+  <view class="customprocess">
+    <text class="processtitle"><text class="hezi">定制流程</text></text>
+    <!-- 定制流程项循环模块，每个流程项是一个子模块 -->
+    <view class="processitem" wx:for="{{processList}}" wx:key="index">
+      <view class="itemnumberwrapper">
+        <text class="itemnumber">{{index + 1}}.</text>
+        <text class="itemcontent">{{item.title}}</text>
+      </view>
+      <text class="itemdesc">{{item.desc}}</text>
+    </view>
+  </view>
+  <!-- 按钮区域模块 -->
+  <view class="startbutton">
+    <navigator url="/pages/tailor_made/index" open-type="switchTab" class="custom-button">开启我的定制旅行！</navigator>
+  </view>
+</view>

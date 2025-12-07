@@ -1,0 +1,151 @@
+<view class="color">
+  <!-- 头部区域 -->
+  <view class="header" bindtap="navigateToLogin">
+    <image class="avatar-wrapper" src="{{userInfo.avatar || '/images/110.jpg'}}" />
+    <text class="title">{{userInfo.name || '点击登录'}}</text>
+  </view>
+
+  <!-- 功能导航区域 -->
+  <view class="function-nav">
+    <view class="function-item" 
+          bindtap="switchTab" 
+          data-type="travel"
+          style="{{ currentTab === 'travel' ? 'color: #007AFF;' : ''}}">
+      <image class="function-icon" 
+             src="{{ currentTab === 'travel' ? '/images/icons/记录选中.png' : '/images/icons/记录未选中.png'}}"></image>
+      <text class="function-name">旅行记录</text>
+    </view>
+    <view class="function-item" 
+          bindtap="switchTab" 
+          data-type="collection"
+          style="{{ currentTab === 'collection' ? 'color: #007AFF;' : ''}}">
+      <image class="function-icon" 
+             src="{{ currentTab === 'collection' ? '/images/icons/收藏选中.png' : '/images/icons/收藏未选中.png'}}"></image>
+      <text class="function-name">我的收藏</text>
+    </view>
+    <view class="function-item" 
+          bindtap="switchTab" 
+          data-type="history"
+          style="{{ currentTab === 'history' ? 'color: #007AFF;' : ''}}">
+      <image class="function-icon" 
+             src="{{ currentTab === 'history' ? '/images/icons/历史选中.png' : '/images/icons/历史未选中.png'}}"></image>
+      <text class="function-name">我的历史</text>
+    </view>
+    <view class="function-item" 
+          bindtap="switchTab" 
+          data-type="order"
+          style="{{ currentTab === 'order' ? 'color: #007AFF;' : ''}}">
+      <image class="function-icon" 
+             src="{{ currentTab === 'order' ? '/images/icons/订单选中.png' : '/images/icons/订单未选中.png'}}"></image>
+      <text class="function-name">我的订单</text>
+    </view>
+  </view>
+</view>
+
+<view class="personal-home-container">
+  <!-- 内容区域 -->
+  <view class="content-container">
+    <!-- 旅行记录 -->
+    <view wx:if="{{ currentTab === 'travel' }}">
+      <view class="travel-record-section">
+        <view class="section-title">我的旅行</view>
+        <view class="travel-record-list">
+          <!-- 这里后续可循环添加旅行记录项 -->
+          <view class="travel-record-item">
+            <view class="travel-record-desc">旅行记录</view>
+          </view>
+        </view>
+        <view class="lianjie">
+          <navigator url="/pages/article/index" class="link">旅记</navigator>
+          <text class="separator">l</text>
+          <navigator url="/pages/video/index" class="link">视频</navigator>
+          <text class="separator">l</text>
+          <navigator url="/pages/qa/index" class="link">问答</navigator>
+          <text class="separator">l</text>
+          <navigator url="/pages/comment_on/index" class="link">点评</navigator>
+        </view>
+      </view>
+      <!-- 更多功能区域 -->
+      <view class="more-functions-section">
+        <view class="section-title">更多服务</view>
+        <view class="jianju"></view>
+        <view class="more-functions-list">
+          <view class="more-function-item" bindtap="article">
+            <view class="more-function-icon"></view>
+            <text class="more-function-name">我的钱包</text>
+          </view>
+          <view class="more-function-item" bindtap="article">
+            <view class="more-function-icon"></view>
+            <text class="more-function-name">我的卡卷</text>
+          </view>
+          <view class="more-function-item" bindtap="article">
+            <view class="more-function-icon"></view>
+            <text class="more-function-name">我的活动</text>
+          </view>
+          <view class="more-function-item" bindtap="article">
+            <view class="more-function-icon"></view>
+            <text class="more-function-name">每日行程</text>
+          </view>
+        </view>
+        <view class="jianju"></view>
+      </view>
+    </view>
+
+    <!-- 我的收藏 -->
+    <view wx:elif="{{ currentTab === 'collection' }}">
+      <view class="content">
+        <block wx:if="{{ orders.length > 0 }}">
+          <view class="order-item" wx:for="{{ orders }}" wx:key="index">
+            <!-- 订单信息展示 -->
+            <text>{{ item.name }}</text>
+          </view>
+        </block>
+        <view wx:else class="empty-content">
+          暂无内容
+          <view class="sub-text">小云期待你的浏览哟</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 我的历史 -->
+    <view wx:elif="{{ currentTab === 'history' }}">
+      <view class="content">
+        <block wx:if="{{ orders.length > 0 }}">
+          <view class="order-item" wx:for="{{ orders }}" wx:key="index">
+            <!-- 订单信息展示 -->
+            <text>{{ item.name }}</text>
+          </view>
+        </block>
+        <view wx:else class="empty-content">
+          暂无内容
+          <view class="sub-text">小云期待你的浏览哟</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 我的订单 -->
+    <view wx:elif="{{ currentTab === 'order' }}">
+      <view class="container">
+        <!-- 顶部标签导航 -->
+        <view class="tab-bar">
+          <view class="tab-item" wx:for="{{ tabs }}" wx:key="index" data-index="{{ index }}" bindtap="switchTab1" style="background-color: {{ currentTabIndex === index ? '#96DED1' : '#fff'}};">
+            {{ item }}
+          </view>
+        </view>
+        <!-- 内容展示区域 -->
+        <view class="content">
+          <block wx:if="{{ orders.length > 0 }}">
+            <view class="order-item" wx:for="{{ orders }}" wx:key="index">
+              <!-- 订单信息展示 -->
+              <text>{{ item.name }}</text>
+            </view>
+          </block>
+          <view wx:else class="empty-content">
+            暂无内容
+            <view class="sub-text">小云期待你的购买哟</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

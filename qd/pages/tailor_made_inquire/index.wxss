@@ -1,0 +1,121 @@
+/* 整体容器样式模块 */
+.container {
+    position: relative;
+    padding: 20rpx;
+}
+
+/* 背景图片样式 */
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* 头部区域样式模块 */
+.header {
+    --header-height: auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: -300rpx;
+    margin-bottom: 40rpx;
+    padding-top: 60rpx;
+}
+
+.title {
+    font-size: 50rpx;
+    color: #333;
+    margin-bottom: 10rpx;
+}
+
+.subtitle {
+    font-size: 80rpx;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10rpx;
+    margin-left: -5rpx;
+}
+
+.subsubtitle {
+    width: 350rpx;
+    font-size: 28rpx;
+    background-color: #96DED1;
+    color: #333;
+    border-radius: 30rpx;
+    padding: 10rpx 20rpx;
+    margin-top: 10rpx;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+}
+
+/* 定制流程区域样式模块 */
+.customprocess {
+    background-color: #f9f9f9;
+    padding: 20rpx;
+    border-radius: 15rpx;
+    margin-bottom: 20rpx;
+    position: relative;
+}
+
+.hezi{
+    border-bottom: 2rpx solid #ffc107;
+}
+
+.processtitle {
+    display: block;
+    text-align: center;
+    font-size: 40rpx;
+    font-weight: bold;
+    margin-bottom: 20rpx;
+    position: relative;
+    top: -10rpx; /* 将“定制流程”向上移动一些，使其处于中上方位置 */
+}
+
+.processitem {
+    margin-bottom: 15rpx;
+}
+
+/* 定制流程项内样式模块 */
+.itemnumberwrapper {
+    margin-top: 30rpx;
+    display: flex;
+    align-items: baseline;
+}
+
+.itemnumber {
+    font-size: 35rpx;
+    font-weight: bold;
+    margin-right: 10rpx;
+}
+
+.itemcontent {
+    font-size: 35rpx;
+    font-weight: bold;
+    color: #333;
+}
+
+.itemdesc {
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #666;
+    margin-left: 38rpx;
+}
+
+/* 按钮区域样式模块 */
+.startbutton {
+    text-align: center;
+}
+
+.custom-button {
+    font-weight: bold;
+    background-color: #96DED1;
+    color: #000; /* 将文本颜色改为黑色 */
+    font-size: 40rpx;
+    padding: 30rpx 100rpx;
+    border-radius: 50rpx;
+    margin: 0 auto;
+    display: inline-block;
+    text-decoration: none; /* 去除默认下划线 */
+}
