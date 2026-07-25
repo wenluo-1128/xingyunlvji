@@ -1,5 +1,5 @@
 --创建mydb数据库
-CREATE DATABASE mydb；
+CREATE DATABASE mydb;
 
 -- 创建 categories 表
 CREATE TABLE categories (
